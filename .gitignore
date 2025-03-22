@@ -4,8 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
-# testing22
+# testing
 /coverage
 
 # next.js
