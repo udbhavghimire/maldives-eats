@@ -323,15 +323,15 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       {/* Header - Improved mobile layout */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex-shrink-0 flex items-center">
               <div className="flex items-center">
-                <div className="h-8 w-8 sm:h-10 sm:w-10 bg-green-500 rounded-full flex items-center justify-center mr-2">
-                  <span className="text-white font-bold text-xs sm:text-base">
+                <div className="h-8 w-8 sm:h-10 sm:w-10 bg-yellow-400 rounded-full flex items-center justify-center mr-2">
+                  <span className="text-black font-bold text-xs sm:text-base">
                     ME
                   </span>
                 </div>
@@ -374,21 +374,21 @@ export default function HomePage() {
               <Link href="/dashboard">
                 {/* <Button
                   variant="outline"
-                  className="border-green-500 text-green-500 hover:bg-green-50"
+                  className="border-yellow-400 text-yellow-400 hover:bg-yellow-50"
                 >
                   My Orders
                 </Button> */}
               </Link>
               <div className="relative">
                 <Button
-                  className="bg-green-500 hover:bg-green-600 px-4 cart-button transition-all duration-300"
+                  className="bg-yellow-400 hover:bg-yellow-500 px-4 cart-button transition-all duration-300 text-black"
                   onClick={toggleCart}
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
                   <span>Cart</span>
                 </Button>
                 {cart.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <span className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                     {cart.reduce((total, item) => total + item.quantity, 0)}
                   </span>
                 )}
@@ -410,8 +410,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-4 sm:space-x-8 overflow-x-auto py-3 no-scrollbar">
             <button
-              className={`text-gray-700 hover:text-green-600 whitespace-nowrap text-sm sm:text-base ${
-                !selectedCategory ? "text-green-600 font-medium" : ""
+              className={`text-gray-700 hover:text-yellow-600 whitespace-nowrap text-sm sm:text-base ${
+                !selectedCategory ? "text-yellow-600 font-medium" : ""
               }`}
               onClick={() => handleCategoryChange("all")}
             >
@@ -420,9 +420,9 @@ export default function HomePage() {
             {categories.map((category) => (
               <button
                 key={category.id}
-                className={`text-gray-700 hover:text-green-600 whitespace-nowrap text-sm sm:text-base ${
+                className={`text-gray-700 hover:text-yellow-600 whitespace-nowrap text-sm sm:text-base ${
                   selectedCategory === category.slug
-                    ? "text-green-600 font-medium"
+                    ? "text-yellow-600 font-medium"
                     : ""
                 }`}
                 onClick={() => handleCategoryChange(category.slug)}
@@ -435,7 +435,7 @@ export default function HomePage() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6 pb-20 sm:pb-6 min-h-screen">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-8 pb-20 sm:pb-6 min-h-screen ">
         {/* Filter Controls */}
         <div className="mb-2 sm:mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-center">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-0">
@@ -445,7 +445,7 @@ export default function HomePage() {
               : "All Products"}
           </h2>
           {/* <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-            <SelectTrigger className="w-full sm:w-48 border-green-500 mt-1 sm:mt-0">
+            <SelectTrigger className="w-full sm:w-48 border-yellow-400 mt-1 sm:mt-0">
               <SelectValue placeholder="All Categories" />
             </SelectTrigger>
             <SelectContent>
@@ -469,7 +469,7 @@ export default function HomePage() {
         {/* Loading State */}
         {loading && (
           <div className="text-center py-10">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-green-600"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-yellow-600"></div>
             <p className="mt-2 text-gray-500">Loading products...</p>
           </div>
         )}
@@ -481,21 +481,21 @@ export default function HomePage() {
           </div>
         )}
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 px-3">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow border border-gray-100 flex flex-col"
+              className="bg-white rounded-lg overflow-hidden transition-shadow flex flex-col text-left"
               onClick={() => openProductDetail(product)}
             >
-              <div className="h-32 sm:h-40 overflow-hidden relative flex items-center justify-center p-2">
+              <div className="h-32 w-32 overflow-hidden relative flex items-start justify-start">
                 <img
                   src={`${product.image}`}
                   alt={product.title}
-                  className="max-h-full max-w-full object-contain"
+                  className="object-contain w-full h-full"
                 />
               </div>
-              <div className="p-3 flex flex-col flex-grow">
+              <div className="pt-2 flex flex-col flex-grow">
                 <div className="flex items-center">
                   <div className="text-red-500 text-xs md:text-md font-medium">
                     {product.price} MVR
@@ -531,7 +531,7 @@ export default function HomePage() {
 
                 {product.stock > 0 ? (
                   <Button
-                    className="mt-auto w-full bg-green-500 hover:bg-green-600 text-white py-1.5 rounded-md add-to-cart-btn"
+                    className="mt-auto w-fit rounded-full bg-yellow-400 hover:bg-yellow-500 text-black add-to-cart-btn"
                     onClick={(e) => {
                       e.stopPropagation(); // Prevent opening product detail
                       addToCart(product, e);
@@ -541,7 +541,7 @@ export default function HomePage() {
                   </Button>
                 ) : (
                   <Button
-                    className="mt-auto w-full bg-gray-300 text-gray-600 py-1.5 rounded-md cursor-not-allowed"
+                    className="mt-auto bg-gray-300 text-gray-600 w-fit rounded-full cursor-not-allowed"
                     disabled
                   >
                     Out of Stock
@@ -556,13 +556,13 @@ export default function HomePage() {
       {/* Floating Cart Button (Mobile Only) */}
       <div className="fixed bottom-4 right-4 sm:hidden z-40">
         <Button
-          className="bg-green-500 hover:bg-green-600 h-14 w-14 rounded-full shadow-lg cart-button transition-all duration-300 flex items-center justify-center"
+          className="bg-yellow-400 hover:bg-yellow-500 text-black h-14 w-14 rounded-full shadow-lg cart-button transition-all duration-300 flex items-center justify-center"
           onClick={toggleCart}
         >
           <div className="relative">
             <ShoppingCart className="h-6 w-6" />
             {cart.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              <span className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {cart.reduce((total, item) => total + item.quantity, 0)}
               </span>
             )}
@@ -584,16 +584,16 @@ export default function HomePage() {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex flex-col h-full">
-            <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-green-50">
+            <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-yellow-50">
               <h2 className="text-lg font-semibold text-gray-800 flex items-center">
-                <ShoppingCart className="h-5 w-5 mr-2 text-green-600" />
+                <ShoppingCart className="h-5 w-5 mr-2 text-yellow-600" />
                 Your Cart
               </h2>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={toggleCart}
-                className="rounded-full p-1 hover:bg-green-100"
+                className="rounded-full p-1 hover:bg-yellow-100"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -613,14 +613,14 @@ export default function HomePage() {
             <div className="flex-1 overflow-y-auto p-4">
               {cart.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-gray-500">
-                  <ShoppingCart className="h-16 w-16 mb-4 opacity-30 text-green-300" />
+                  <ShoppingCart className="h-16 w-16 mb-4 opacity-30 text-yellow-300" />
                   <p className="mb-2 text-lg">Your cart is empty</p>
                   <p className="text-sm text-gray-400 mb-6 text-center">
                     Add some delicious items to your cart and they'll appear
                     here
                   </p>
                   <Button
-                    className="mt-4 bg-green-500 hover:bg-green-600 px-6"
+                    className="mt-4 bg-yellow-400 hover:bg-yellow-500 text-black px-6"
                     onClick={toggleCart}
                   >
                     Continue Shopping
@@ -706,10 +706,10 @@ export default function HomePage() {
             </div>
 
             {cart.length > 0 && (
-              <div className="border-t border-gray-200 p-4 space-y-4 bg-green-50">
+              <div className="border-t border-gray-200 p-4 space-y-4 bg-yellow-50">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p className="font-bold text-green-700">
+                  <p className="font-bold text-black">
                     {cartTotal.toFixed(2)} MVR
                   </p>
                 </div>
@@ -718,13 +718,13 @@ export default function HomePage() {
                 </p>
                 <div className="space-y-2">
                   <Link href="/cart" className="block">
-                    <Button className="w-full bg-green-500 hover:bg-green-600 py-5 text-base">
+                    <Button className="w-full bg-yellow-400 hover:bg-yellow-500 py-5 text-base text-black">
                       Checkout
                     </Button>
                   </Link>
                   <Button
                     variant="outline"
-                    className="w-full border-green-500 text-green-500 hover:bg-green-50"
+                    className="w-full border-yellow-400 text-black hover:bg-yellow-50"
                     onClick={toggleCart}
                   >
                     Continue Shopping
@@ -778,7 +778,7 @@ export default function HomePage() {
         >
           <div
             className={`transform transition-transform duration-300 ease-in-out bg-white shadow-xl overflow-hidden
-              sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:max-w-md sm:w-full sm:rounded-xl
+              sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:max-w-xl sm:w-full sm:rounded-xl
               inset-x-0 bottom-0 rounded-t-xl max-h-[85vh] sm:max-h-[90vh] absolute
               ${
                 isProductDetailOpen
@@ -815,7 +815,7 @@ export default function HomePage() {
               {/* Product Detail Content */}
               <div className="overflow-y-auto flex-1">
                 {/* Product Image */}
-                <div className="relative h-64 sm:h-72 bg-gray-100">
+                <div className="relative h-64 sm:h-64 bg-gray-100">
                   <img
                     src={selectedProduct.image}
                     alt={selectedProduct.title}
@@ -828,24 +828,23 @@ export default function HomePage() {
                   <div className="mb-4">
                     {/* Category badge */}
                     <div className="mb-2">
-                      <span className="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                      <span className="inline-block px-2 py-1 bg-yellow-100 text-black text-xs rounded-full">
                         {selectedProduct.category_name}
                       </span>
                     </div>
-
+                    <div className="flex items-center  py-1.5 rounded-lg w-fit">
+                      <span className="text-md font-semibold text-red-500">
+                        {selectedProduct.price} MVR
+                      </span>
+                      <span className="text-sm text-gray-500 font-normal ml-1">
+                        / {selectedProduct.unit}
+                      </span>
+                    </div>
                     {/* Title and price */}
                     <div className="flex flex-col gap-2">
                       <h2 className="text-xl font-bold text-gray-800">
                         {selectedProduct.title}
                       </h2>
-                      <div className="flex items-center bg-green-50 px-3 py-1.5 rounded-lg w-fit">
-                        <span className="text-lg font-bold text-green-600">
-                          {selectedProduct.price} MVR
-                        </span>
-                        <span className="text-sm text-gray-500 font-normal ml-1">
-                          / {selectedProduct.unit}
-                        </span>
-                      </div>
                     </div>
 
                     {/* Ratings */}
@@ -875,7 +874,7 @@ export default function HomePage() {
                     {/* Stock Status */}
                     <div className="mb-6">
                       {selectedProduct.stock > 0 ? (
-                        <div className="flex items-center text-green-700">
+                        <div className="flex items-center text-yellow-700">
                           <svg
                             className="w-5 h-5 mr-1.5"
                             fill="currentColor"
@@ -1012,7 +1011,7 @@ export default function HomePage() {
                             Customer Reviews
                           </h3>
                           {productRatings.length > 2 && (
-                            <button className="text-green-600 text-sm font-medium hover:text-green-700">
+                            <button className="text-yellow-600 text-sm font-medium hover:text-yellow-700">
                               View all {productRatings.length} reviews
                             </button>
                           )}
@@ -1061,7 +1060,7 @@ export default function HomePage() {
               {/* Add to Cart Button */}
               <div className="p-4 border-t border-gray-200 bg-white">
                 <Button
-                  className="w-full bg-green-500 hover:bg-green-600 py-3 text-base add-to-cart-desktop"
+                  className=" rounded-ful bg-yellow-400 text-black hover:bg-yellow-500 py-3 text-base add-to-cart-desktop"
                   onClick={(e) => {
                     addToCart(selectedProduct, e);
                     // Optional: close the drawer after adding to cart
@@ -1077,14 +1076,14 @@ export default function HomePage() {
       )}
 
       {/* Footer */}
-      <footer className="bg-green-700 text-white mt-8 sm:mt-12 py-6 sm:py-8">
+      <footer className="bg-yellow-400 text-black mt-8 sm:mt-12 py-6 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="col-span-2 md:col-span-1">
               <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">
                 Maldives Eats
               </h3>
-              <p className="text-green-100 text-xs sm:text-sm">
+              <p className="text-black text-xs sm:text-sm">
                 Your one-stop online grocery store for all Maldivian food
                 products.
               </p>
@@ -1093,7 +1092,7 @@ export default function HomePage() {
               <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">
                 Quick Links
               </h3>
-              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-green-100">
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-black">
                 <li>
                   <Link href="/about">About Us</Link>
                 </li>
@@ -1112,7 +1111,7 @@ export default function HomePage() {
               <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">
                 Categories
               </h3>
-              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-green-100">
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-black">
                 {categories.slice(0, 4).map((category) => (
                   <li key={category.id}>
                     <Link href={`/?category=${category.slug}`}>
@@ -1126,14 +1125,14 @@ export default function HomePage() {
               <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">
                 Contact Us
               </h3>
-              <p className="text-xs sm:text-sm text-green-100 mb-1 sm:mb-2">
+              <p className="text-xs sm:text-sm text-black mb-1 sm:mb-2">
                 Email: info@maldiveseats.mv
               </p>
-              <p className="text-xs sm:text-sm text-green-100 mb-1 sm:mb-2">
+              <p className="text-xs sm:text-sm text-black mb-1 sm:mb-2">
                 Phone: +960 777 1234
               </p>
               <div className="flex space-x-4 mt-3 sm:mt-4">
-                <a href="#" className="text-white">
+                <a href="#" className="text-black">
                   <svg
                     className="h-4 w-4 sm:h-5 sm:w-5"
                     fill="currentColor"
@@ -1142,7 +1141,7 @@ export default function HomePage() {
                     <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
                   </svg>
                 </a>
-                <a href="#" className="text-white">
+                <a href="#" className="text-black">
                   <svg
                     className="h-4 w-4 sm:h-5 sm:w-5"
                     fill="currentColor"
@@ -1151,7 +1150,7 @@ export default function HomePage() {
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                   </svg>
                 </a>
-                <a href="#" className="text-white">
+                <a href="#" className="text-black">
                   <svg
                     className="h-4 w-4 sm:h-5 sm:w-5"
                     fill="currentColor"
@@ -1163,7 +1162,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="border-t border-green-600 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center text-xs sm:text-sm text-green-100">
+          <div className="border-t border-yellow-600 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center text-xs sm:text-sm text-black">
             <p>
               &copy; {new Date().getFullYear()} Maldives Eats. All rights
               reserved.

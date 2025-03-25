@@ -367,7 +367,7 @@ export default function Cart() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-green-500 hover:bg-green-600 text-white"
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
                     disabled={loading}
                   >
                     {loading ? (
